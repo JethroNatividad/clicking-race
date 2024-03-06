@@ -1,8 +1,7 @@
 "use client";
 
 import Playing from "@/components/Playing";
-import Racetrack from "@/components/Racetrack";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export type Player = {
   id: string;
@@ -16,7 +15,6 @@ const Home = () => {
   const raceLength = 20;
   const [gameState, setGameState] = useState<GameState>("menu");
   const [winner, setWinner] = useState<Player | null>(null);
-  const [countdown, setCountdown] = useState(3);
   const [players, setPlayers] = useState<Player[]>([
     {
       id: "1",
@@ -40,16 +38,6 @@ const Home = () => {
     },
   ]);
 
-  useEffect(() => {
-    if (gameState === "playing") {
-      const winner = players.find((player) => player.position >= raceLength);
-      if (winner) {
-        setWinner(winner);
-        setGameState("finished");
-      }
-    }
-  }, [gameState, players]);
-
   const handleMovePlayer = (player: Player) => {
     player.position += 1;
     setPlayers(players.map((p) => (p.id === player.id ? { ...player } : p)));
@@ -65,18 +53,7 @@ const Home = () => {
     setPlayers((players) =>
       players.map((player) => ({ ...player, position: 0 }))
     );
-    setCountdown(3);
   };
-
-  useEffect(() => {
-    if (gameState === "playing" && countdown > -1) {
-      const timer = setTimeout(() => {
-        setCountdown(countdown - 1);
-      }, 1000);
-
-      return () => clearTimeout(timer);
-    }
-  }, [gameState, countdown]);
 
   if (gameState === "menu") {
     return (
