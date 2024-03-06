@@ -1,24 +1,17 @@
-import { GameState, Player } from "@/store/game";
+import { useGame } from "@/store/game";
 import React, { useEffect, useState } from "react";
 import Racetrack from "./Racetrack";
 
-type Props = {
-  gameState: GameState;
-  setGameState: (state: GameState) => void;
-  players: Player[];
-  raceLength: number;
-  setWinner: (player: Player) => void;
-  handleMovePlayer: (player: Player) => void;
-};
+const Playing = () => {
+  const {
+    gameState,
+    players,
+    raceLength,
+    setWinner,
+    setGameState,
+    handleMovePlayer,
+  } = useGame();
 
-const Playing = ({
-  players,
-  raceLength,
-  handleMovePlayer,
-  gameState,
-  setWinner,
-  setGameState,
-}: Props) => {
   const [countdown, setCountdown] = useState(3);
 
   useEffect(() => {
