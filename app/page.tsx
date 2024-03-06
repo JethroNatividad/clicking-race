@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type Player = {
   id: string;
@@ -11,8 +11,10 @@ type Player = {
 type GameState = "menu" | "playing" | "finished";
 
 const Home = () => {
-  const [gameState, setGameState] = useState<GameState>("menu");
   const raceLength = 20;
+  const racetrackRef = useRef(null);
+  const [gameState, setGameState] = useState<GameState>("menu");
+  const [racetrackWidth, setRacetrackWidth] = useState(0);
   const [winner, setWinner] = useState<Player | null>(null);
   const [countdown, setCountdown] = useState(3);
   const [players, setPlayers] = useState<Player[]>([
@@ -50,6 +52,23 @@ const Home = () => {
     );
     setCountdown(3);
   };
+
+  useEffect(() => {
+    const calculateWidth = () => {
+      if (racetrackRef.current) {
+        setRacetrackWidth((racetrackRef.current as HTMLElement).offsetWidth);
+      }
+    };
+
+    calculateWidth();
+    window.addEventListener("resize", calculateWidth);
+    console.log(racetrackWidth);
+    console.log(racetrackRef.current);
+
+    return () => {
+      window.removeEventListener("resize", calculateWidth);
+    };
+  }, [gameState]);
 
   useEffect(() => {
     if (gameState === "playing" && countdown > -1) {
@@ -106,22 +125,34 @@ const Home = () => {
 
   if (gameState === "playing") {
     return (
-      <div>
-        <h1>Playing</h1>
+      <main className="h-screen">
         <div
           className={`absolute top-0 left-0 w-full h-screen flex items-center justify-center ${
             countdown < 0 && "hidden"
           }`}
         >
-          <div>{countdown > 0 ? <h2>{countdown}</h2> : <h2>Go!</h2>}</div>
+          <h2 className="text-7xl">{countdown > 0 ? countdown : "Go!"}</h2>
         </div>
-        {players.map((player) => (
-          <div className="border-black border-t" key={player.id}>
-            <div>Player: {player.id}</div>
-            <div>Player Position: {player.position}</div>
-          </div>
-        ))}
-      </div>
+        <div
+          ref={racetrackRef}
+          className={`grid grid-rows-${players.length} h-full`}
+        >
+          {players.map((player) => (
+            <div className="border-black border-t relative" key={player.id}>
+              <div>Player: {player.id}</div>
+              <div>Player Position: {player.position}</div>
+              <div
+                className="absolute top-1/2"
+                style={{
+                  left: `${(player.position / raceLength) * racetrackWidth}px`,
+                }}
+              >
+                Player {player.id}
+              </div>
+            </div>
+          ))}
+        </div>
+      </main>
     );
   }
 
