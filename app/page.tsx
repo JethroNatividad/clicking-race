@@ -37,6 +37,37 @@ const Home = () => {
     },
   ]);
 
+  const handleStart = () => {
+    setGameState("playing");
+  };
+
+  const handleRestart = () => {
+    setGameState("menu");
+    setWinner(null);
+    setPlayers([
+      {
+        id: "1",
+        key: "q",
+        position: 0,
+      },
+      {
+        id: "2",
+        key: "e",
+        position: 0,
+      },
+      {
+        id: "3",
+        key: "t",
+        position: 0,
+      },
+      {
+        id: "4",
+        key: "u",
+        position: 0,
+      },
+    ]);
+  };
+
   useEffect(() => {
     if (gameState === "playing") {
       // If game is in play state
@@ -70,7 +101,7 @@ const Home = () => {
     return (
       <div>
         <h1>Clicking Crazy</h1>
-        <button onClick={() => setGameState("playing")}>Start</button>
+        <button onClick={handleStart}>Start</button>
       </div>
     );
   }
@@ -94,7 +125,7 @@ const Home = () => {
       <div>
         <h1>Finished</h1>
         <h2>{winner?.id} wins!</h2>
-        <button onClick={() => setGameState("menu")}>Play again</button>
+        <button onClick={handleRestart}>Play again</button>
       </div>
     );
   }
