@@ -44,28 +44,9 @@ const Home = () => {
   const handleRestart = () => {
     setGameState("menu");
     setWinner(null);
-    setPlayers([
-      {
-        id: "1",
-        key: "q",
-        position: 0,
-      },
-      {
-        id: "2",
-        key: "e",
-        position: 0,
-      },
-      {
-        id: "3",
-        key: "t",
-        position: 0,
-      },
-      {
-        id: "4",
-        key: "u",
-        position: 0,
-      },
-    ]);
+    setPlayers((players) =>
+      players.map((player) => ({ ...player, position: 0 }))
+    );
   };
 
   useEffect(() => {
