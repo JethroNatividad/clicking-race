@@ -1,5 +1,6 @@
 "use client";
 
+import Playing from "@/components/Playing";
 import Racetrack from "@/components/Racetrack";
 import { useEffect, useState } from "react";
 
@@ -9,7 +10,7 @@ export type Player = {
   position: number;
 };
 
-type GameState = "menu" | "playing" | "finished";
+export type GameState = "menu" | "playing" | "finished";
 
 const Home = () => {
   const raceLength = 20;
@@ -93,26 +94,14 @@ const Home = () => {
 
   if (gameState === "playing") {
     return (
-      <main className="h-screen">
-        <div
-          className={`absolute top-0 left-0 w-full h-screen flex items-center justify-center ${
-            countdown < 0 && "hidden"
-          }`}
-        >
-          <h2 className="text-7xl">{countdown > 0 ? countdown : "Go!"}</h2>
-        </div>
-        <div className={`grid grid-rows-${players.length} h-full`}>
-          {players.map((player) => (
-            <Racetrack
-              started={countdown < 1}
-              handleMovePlayer={handleMovePlayer}
-              key={player.id}
-              player={player}
-              raceLength={raceLength}
-            />
-          ))}
-        </div>
-      </main>
+      <Playing
+        gameState={gameState}
+        handleMovePlayer={handleMovePlayer}
+        players={players}
+        raceLength={raceLength}
+        setGameState={setGameState}
+        setWinner={setWinner}
+      />
     );
   }
 
