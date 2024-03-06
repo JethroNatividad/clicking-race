@@ -1,21 +1,15 @@
 "use client";
 
-import { Player } from "@/store/game";
+import { Player, useGame } from "@/store/game";
 import React, { useEffect, useRef, useState } from "react";
 
 type Props = {
   player: Player;
-  raceLength: number;
-  handleMovePlayer: (player: Player) => void;
   started: boolean;
 };
 
-const Racetrack = ({
-  player,
-  raceLength,
-  started,
-  handleMovePlayer,
-}: Props) => {
+const Racetrack = ({ player, started }: Props) => {
+  const { raceLength, handleMovePlayer } = useGame();
   const [racetrackWidth, setRacetrackWidth] = useState(0);
   const racetrackRef = useRef(null);
 

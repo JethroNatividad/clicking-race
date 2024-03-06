@@ -3,14 +3,7 @@ import React, { useEffect, useState } from "react";
 import Racetrack from "./Racetrack";
 
 const Playing = () => {
-  const {
-    gameState,
-    players,
-    raceLength,
-    setWinner,
-    setGameState,
-    handleMovePlayer,
-  } = useGame();
+  const { gameState, players, raceLength, setWinner, setGameState } = useGame();
 
   const [countdown, setCountdown] = useState(3);
 
@@ -45,13 +38,7 @@ const Playing = () => {
       </div>
       <div className={`grid grid-rows-${players.length} h-full`}>
         {players.map((player) => (
-          <Racetrack
-            started={countdown < 1}
-            handleMovePlayer={handleMovePlayer}
-            key={player.id}
-            player={player}
-            raceLength={raceLength}
-          />
+          <Racetrack key={player.id} started={countdown < 1} player={player} />
         ))}
       </div>
     </main>
