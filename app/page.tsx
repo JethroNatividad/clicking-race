@@ -39,6 +39,16 @@ const Home = () => {
     },
   ]);
 
+  useEffect(() => {
+    if (gameState === "playing") {
+      const winner = players.find((player) => player.position >= raceLength);
+      if (winner) {
+        setWinner(winner);
+        setGameState("finished");
+      }
+    }
+  }, [gameState, players]);
+
   const handleMovePlayer = (player: Player) => {
     player.position += 1;
     setPlayers(players.map((p) => (p.id === player.id ? { ...player } : p)));
