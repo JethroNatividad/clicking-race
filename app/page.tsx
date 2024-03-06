@@ -12,7 +12,7 @@ type GameState = "menu" | "playing" | "finished";
 
 const Home = () => {
   const [gameState, setGameState] = useState<GameState>("menu");
-  const raceLength = 100;
+  const raceLength = 20;
   const [winner, setWinner] = useState<Player | null>(null);
   const [countdown, setCountdown] = useState(3);
   const [players, setPlayers] = useState<Player[]>([
@@ -48,10 +48,11 @@ const Home = () => {
     setPlayers((players) =>
       players.map((player) => ({ ...player, position: 0 }))
     );
+    setCountdown(3);
   };
 
   useEffect(() => {
-    if (gameState === "playing" && countdown > 0) {
+    if (gameState === "playing" && countdown > -1) {
       const timer = setTimeout(() => {
         setCountdown(countdown - 1);
       }, 1000);
@@ -107,11 +108,17 @@ const Home = () => {
     return (
       <div>
         <h1>Playing</h1>
-        <div>{countdown > 0 ? <h2>{countdown}</h2> : <h2>Go!</h2>}</div>
+        <div
+          className={`absolute top-0 left-0 w-full h-screen flex items-center justify-center ${
+            countdown < 0 && "hidden"
+          }`}
+        >
+          <div>{countdown > 0 ? <h2>{countdown}</h2> : <h2>Go!</h2>}</div>
+        </div>
         {players.map((player) => (
-          <div key={player.id}>
-            <div>{player.id}</div>
-            <div>{player.position}</div>
+          <div className="border-black border-t" key={player.id}>
+            <div>Player: {player.id}</div>
+            <div>Player Position: {player.position}</div>
           </div>
         ))}
       </div>
