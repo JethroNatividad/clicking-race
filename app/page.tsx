@@ -1,52 +1,10 @@
 "use client";
 
 import Playing from "@/components/Playing";
-import { GameState, Player } from "@/store/game";
-import { useState } from "react";
+import { useGame } from "@/store/game";
 
 const Home = () => {
-  const raceLength = 20;
-  const [gameState, setGameState] = useState<GameState>("menu");
-  const [winner, setWinner] = useState<Player | null>(null);
-  const [players, setPlayers] = useState<Player[]>([
-    {
-      id: "1",
-      key: "q",
-      position: 0,
-    },
-    {
-      id: "2",
-      key: "e",
-      position: 0,
-    },
-    {
-      id: "3",
-      key: "t",
-      position: 0,
-    },
-    {
-      id: "4",
-      key: "u",
-      position: 0,
-    },
-  ]);
-
-  const handleMovePlayer = (player: Player) => {
-    player.position += 1;
-    setPlayers(players.map((p) => (p.id === player.id ? { ...player } : p)));
-  };
-
-  const handleStart = () => {
-    setGameState("playing");
-  };
-
-  const handleRestart = () => {
-    setGameState("menu");
-    setWinner(null);
-    setPlayers((players) =>
-      players.map((player) => ({ ...player, position: 0 }))
-    );
-  };
+  const { gameState, handleStart, winner, handleRestart } = useGame();
 
   if (gameState === "menu") {
     return (
@@ -63,16 +21,7 @@ const Home = () => {
   }
 
   if (gameState === "playing") {
-    return (
-      <Playing
-        gameState={gameState}
-        handleMovePlayer={handleMovePlayer}
-        players={players}
-        raceLength={raceLength}
-        setGameState={setGameState}
-        setWinner={setWinner}
-      />
-    );
+    return <Playing />;
   }
 
   if (gameState === "finished") {
