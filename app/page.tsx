@@ -39,6 +39,11 @@ const Home = () => {
     },
   ]);
 
+  const handleMovePlayer = (player: Player) => {
+    player.position += 1;
+    setPlayers(players.map((p) => (p.id === player.id ? { ...player } : p)));
+  };
+
   const handleStart = () => {
     setGameState("playing");
   };
@@ -59,35 +64,6 @@ const Home = () => {
       }, 1000);
 
       return () => clearTimeout(timer);
-    }
-  }, [gameState, countdown]);
-
-  useEffect(() => {
-    if (gameState === "playing" && countdown < 1) {
-      // If game is in play state
-      // Listen for keydown events
-      const handleKeyDown = (event: KeyboardEvent) => {
-        const player = players.find((player) => player.key === event.key);
-        if (player) {
-          player.position += 1;
-          setPlayers([...players]);
-        }
-
-        const winningPlayer = players.find(
-          (player) => player.position >= raceLength
-        );
-
-        if (winningPlayer) {
-          setWinner(winningPlayer);
-          setGameState("finished");
-        }
-      };
-
-      window.addEventListener("keydown", handleKeyDown);
-
-      return () => {
-        window.removeEventListener("keydown", handleKeyDown);
-      };
     }
   }, [gameState, countdown]);
 
@@ -117,7 +93,13 @@ const Home = () => {
         </div>
         <div className={`grid grid-rows-${players.length} h-full`}>
           {players.map((player) => (
-            <Racetrack player={player} raceLength={raceLength} />
+            <Racetrack
+              started={countdown < 1}
+              handleMovePlayer={handleMovePlayer}
+              key={player.id}
+              player={player}
+              raceLength={raceLength}
+            />
           ))}
         </div>
       </main>

@@ -6,11 +6,36 @@ import React, { useEffect, useRef, useState } from "react";
 type Props = {
   player: Player;
   raceLength: number;
+  handleMovePlayer: (player: Player) => void;
+  started: boolean;
 };
 
-const Racetrack = ({ player, raceLength }: Props) => {
+const Racetrack = ({
+  player,
+  raceLength,
+  started,
+  handleMovePlayer,
+}: Props) => {
   const [racetrackWidth, setRacetrackWidth] = useState(0);
   const racetrackRef = useRef(null);
+
+  useEffect(() => {
+    if (started) {
+      // If game is in play state
+      // Listen for keydown events
+      const handleKeyDown = (event: KeyboardEvent) => {
+        if (event.key === player.key) {
+          handleMovePlayer(player);
+        }
+      };
+
+      window.addEventListener("keydown", handleKeyDown);
+
+      return () => {
+        window.removeEventListener("keydown", handleKeyDown);
+      };
+    }
+  }, [started, player, handleMovePlayer]);
 
   useEffect(() => {
     const calculateWidth = () => {
@@ -30,11 +55,7 @@ const Racetrack = ({ player, raceLength }: Props) => {
   }, []);
 
   return (
-    <div
-      ref={racetrackRef}
-      className="border-black border-t relative"
-      key={player.id}
-    >
+    <div ref={racetrackRef} className="border-black border-t relative">
       <div>Player: {player.id}</div>
       <div>Player Position: {player.position}</div>
       <div
