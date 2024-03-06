@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import Racetrack from "@/components/Racetrack";
+import { useEffect, useState } from "react";
 
-type Player = {
+export type Player = {
   id: string;
   key: string | null;
   position: number;
@@ -12,9 +13,7 @@ type GameState = "menu" | "playing" | "finished";
 
 const Home = () => {
   const raceLength = 20;
-  const racetrackRef = useRef(null);
   const [gameState, setGameState] = useState<GameState>("menu");
-  const [racetrackWidth, setRacetrackWidth] = useState(0);
   const [winner, setWinner] = useState<Player | null>(null);
   const [countdown, setCountdown] = useState(3);
   const [players, setPlayers] = useState<Player[]>([
@@ -52,23 +51,6 @@ const Home = () => {
     );
     setCountdown(3);
   };
-
-  useEffect(() => {
-    const calculateWidth = () => {
-      if (racetrackRef.current) {
-        setRacetrackWidth((racetrackRef.current as HTMLElement).offsetWidth);
-      }
-    };
-
-    calculateWidth();
-    window.addEventListener("resize", calculateWidth);
-    console.log(racetrackWidth);
-    console.log(racetrackRef.current);
-
-    return () => {
-      window.removeEventListener("resize", calculateWidth);
-    };
-  }, [gameState]);
 
   useEffect(() => {
     if (gameState === "playing" && countdown > -1) {
@@ -133,23 +115,9 @@ const Home = () => {
         >
           <h2 className="text-7xl">{countdown > 0 ? countdown : "Go!"}</h2>
         </div>
-        <div
-          ref={racetrackRef}
-          className={`grid grid-rows-${players.length} h-full`}
-        >
+        <div className={`grid grid-rows-${players.length} h-full`}>
           {players.map((player) => (
-            <div className="border-black border-t relative" key={player.id}>
-              <div>Player: {player.id}</div>
-              <div>Player Position: {player.position}</div>
-              <div
-                className="absolute top-1/2"
-                style={{
-                  left: `${(player.position / raceLength) * racetrackWidth}px`,
-                }}
-              >
-                Player {player.id}
-              </div>
-            </div>
+            <Racetrack player={player} raceLength={raceLength} />
           ))}
         </div>
       </main>
