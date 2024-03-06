@@ -34,8 +34,6 @@ const GameContext = createContext<GameContextType>({
   handleRestart: () => {},
 });
 
-export default GameContext;
-
 export const GameProvider = ({ children }: React.PropsWithChildren) => {
   const raceLength = 20;
   const [gameState, setGameState] = useState<GameState>("menu");
@@ -98,4 +96,14 @@ export const GameProvider = ({ children }: React.PropsWithChildren) => {
       {children}
     </GameContext.Provider>
   );
+};
+
+export default GameContext;
+
+export const useGame = () => {
+  const context = React.useContext(GameContext);
+  if (context === undefined) {
+    throw new Error("useGame must be used within a GameProvider");
+  }
+  return context;
 };
