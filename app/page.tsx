@@ -1,15 +1,8 @@
 "use client";
 
 import Playing from "@/components/Playing";
+import { GameState, Player } from "@/store/game";
 import { useState } from "react";
-
-export type Player = {
-  id: string;
-  key: string | null;
-  position: number;
-};
-
-export type GameState = "menu" | "playing" | "finished";
 
 const Home = () => {
   const raceLength = 20;

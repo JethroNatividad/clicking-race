@@ -1,6 +1,6 @@
 "use client";
 
-import { Player } from "@/app/page";
+import { Player } from "@/store/game";
 import React, { useEffect, useRef, useState } from "react";
 
 type Props = {

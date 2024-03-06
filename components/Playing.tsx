@@ -1,4 +1,4 @@
-import { GameState, Player } from "@/app/page";
+import { GameState, Player } from "@/store/game";
 import React, { useEffect, useState } from "react";
 import Racetrack from "./Racetrack";
 
