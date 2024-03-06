@@ -14,6 +14,7 @@ const Home = () => {
   const [gameState, setGameState] = useState<GameState>("menu");
   const raceLength = 100;
   const [winner, setWinner] = useState<Player | null>(null);
+  const [countdown, setCountdown] = useState(3);
   const [players, setPlayers] = useState<Player[]>([
     {
       id: "1",
@@ -50,7 +51,17 @@ const Home = () => {
   };
 
   useEffect(() => {
-    if (gameState === "playing") {
+    if (gameState === "playing" && countdown > 0) {
+      const timer = setTimeout(() => {
+        setCountdown(countdown - 1);
+      }, 1000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [gameState, countdown]);
+
+  useEffect(() => {
+    if (gameState === "playing" && countdown < 1) {
       // If game is in play state
       // Listen for keydown events
       const handleKeyDown = (event: KeyboardEvent) => {
@@ -76,13 +87,18 @@ const Home = () => {
         window.removeEventListener("keydown", handleKeyDown);
       };
     }
-  }, [gameState]);
+  }, [gameState, countdown]);
 
   if (gameState === "menu") {
     return (
       <div>
         <h1>Clicking Crazy</h1>
-        <button onClick={handleStart}>Start</button>
+        <button
+          className="px-5 py-3 bg-blue-400 rounded-md"
+          onClick={handleStart}
+        >
+          Start
+        </button>
       </div>
     );
   }
@@ -91,6 +107,7 @@ const Home = () => {
     return (
       <div>
         <h1>Playing</h1>
+        <div>{countdown > 0 ? <h2>{countdown}</h2> : <h2>Go!</h2>}</div>
         {players.map((player) => (
           <div key={player.id}>
             <div>{player.id}</div>
