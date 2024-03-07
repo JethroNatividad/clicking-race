@@ -8,6 +8,7 @@ export type Player = {
   id: string;
   key: string | null;
   position: number;
+  name: string;
 };
 
 type GameContextType = {
@@ -38,28 +39,7 @@ export const GameProvider = ({ children }: React.PropsWithChildren) => {
   const raceLength = 20;
   const [gameState, setGameState] = useState<GameState>("menu");
   const [winner, setWinner] = useState<Player | null>(null);
-  const [players, setPlayers] = useState<Player[]>([
-    {
-      id: "1",
-      key: "q",
-      position: 0,
-    },
-    {
-      id: "2",
-      key: "e",
-      position: 0,
-    },
-    {
-      id: "3",
-      key: "t",
-      position: 0,
-    },
-    {
-      id: "4",
-      key: "u",
-      position: 0,
-    },
-  ]);
+  const [players, setPlayers] = useState<Player[]>([]);
 
   const handleMovePlayer = (player: Player) => {
     player.position += 1;
