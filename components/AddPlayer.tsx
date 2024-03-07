@@ -60,7 +60,7 @@ const AddPlayer = ({ handleCloseAddPlayer }: Props) => {
   };
 
   return (
-    <div className="border border-black rounded-md w-full max-w-lg p-5 space-y-5 relative">
+    <div className="border border-black rounded-md w-full max-w-lg p-5 space-y-5 relative bg-white shadow-md">
       <h1 className="text-2xl font-bold text-center">Add Player</h1>
       <label htmlFor="name" className="flex flex-col">
         Player Name:
