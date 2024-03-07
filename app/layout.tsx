@@ -6,7 +6,7 @@ import { GameProvider } from "@/store/game";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Clicking Crazy",
+  title: "Clicking Race",
   description: "Clicking Race Game",
 };
 
