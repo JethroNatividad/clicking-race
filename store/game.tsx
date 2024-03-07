@@ -22,6 +22,7 @@ type GameContextType = {
   setPlayers: (players: Player[]) => void;
   handleMovePlayer: (player: Player) => void;
   resetWinner: () => void;
+  setRaceLength: (length: number) => void;
 };
 
 const GameContext = createContext<GameContextType>({
@@ -34,10 +35,11 @@ const GameContext = createContext<GameContextType>({
   setPlayers: () => {},
   handleMovePlayer: () => {},
   resetWinner: () => {},
+  setRaceLength: () => {},
 });
 
 export const GameProvider = ({ children }: React.PropsWithChildren) => {
-  const raceLength = 20;
+  const [raceLength, setRaceLength] = useState(20);
   const [gameState, setGameState] = useState<GameState>("menu");
   const [winner, setWinner] = useState<Player | null>(null);
   const [players, setPlayers] = useState<Player[]>([]);
@@ -66,6 +68,7 @@ export const GameProvider = ({ children }: React.PropsWithChildren) => {
         setWinner,
         handleMovePlayer,
         resetWinner,
+        setRaceLength,
       }}
     >
       {children}

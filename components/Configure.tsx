@@ -7,7 +7,7 @@ import Background from "@/assets/images/bg-config.webp";
 import Image from "next/image";
 
 const Configure = () => {
-  const { players, setGameState } = useGame();
+  const { players, setGameState, setRaceLength } = useGame();
   const [isAddingPlayer, setIsAddingPlayer] = useState(false);
 
   const handleOpenAddPlayer = () => {
@@ -18,7 +18,18 @@ const Configure = () => {
     setIsAddingPlayer(false);
   };
 
-  const handleStartGame = () => {
+  const handleStartShortGame = () => {
+    setRaceLength(20);
+    setGameState("playing");
+  };
+
+  const handleStartMediumGame = () => {
+    setRaceLength(50);
+    setGameState("playing");
+  };
+
+  const handleStartLongGame = () => {
+    setRaceLength(100);
     setGameState("playing");
   };
 
@@ -46,12 +57,26 @@ const Configure = () => {
         )}
 
         {players.length >= 2 && !isAddingPlayer && (
-          <button
-            className="px-5 py-3 border text-xl border-black rounded-md hover:bg-black hover:text-white transition-all"
-            onClick={handleStartGame}
-          >
-            Start Game
-          </button>
+          <div className="flex flex-col space-y-5">
+            <button
+              className="px-5 py-3 border text-xl border-black rounded-md hover:bg-black hover:text-white transition-all"
+              onClick={handleStartShortGame}
+            >
+              Short Race
+            </button>
+            <button
+              className="px-5 py-3 border text-xl border-black rounded-md hover:bg-black hover:text-white transition-all"
+              onClick={handleStartMediumGame}
+            >
+              Medium Race
+            </button>
+            <button
+              className="px-5 py-3 border text-xl border-black rounded-md hover:bg-black hover:text-white transition-all"
+              onClick={handleStartLongGame}
+            >
+              Long Race
+            </button>
+          </div>
         )}
       </div>
       <Image
