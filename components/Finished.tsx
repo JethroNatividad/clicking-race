@@ -2,11 +2,15 @@ import { useGame } from "@/store/game";
 import React from "react";
 
 const Finished = () => {
-  const { winner, handleRestart } = useGame();
+  const { winner, handleRestart, setGameState } = useGame();
+  const handleBackToMenu = () => {
+    setGameState("menu");
+  };
+
   return (
     <main className="h-screen flex items-center justify-center">
-      <div>
-        <div className="relative">
+      <div className="flex flex-col space-y-5">
+        <div className="relative -mb-10">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="-4 0 32 32"
@@ -27,6 +31,18 @@ const Finished = () => {
           </svg>
         </div>
         <h1 className="text-4xl font-bold">{winner?.name} wins</h1>
+        <button
+          className="px-5 py-3 border border-black rounded-md hover:bg-zinc-100"
+          onClick={handleRestart}
+        >
+          Play Again
+        </button>
+        <button
+          className="px-5 py-3 border border-black rounded-md hover:bg-zinc-100"
+          onClick={handleBackToMenu}
+        >
+          Back to Menu
+        </button>
       </div>
     </main>
   );
