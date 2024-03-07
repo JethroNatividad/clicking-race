@@ -13,7 +13,7 @@ const Menu = () => {
 
   return (
     <main className="h-screen w-full flex items-center justify-center relative text-slate-300">
-      <Header />
+      <Header title="Clicking Crazy" />
       <section className="relative h-screen w-full flex items-center justify-center">
         <Image
           className="absolute top-0 left-0 h-full object-cover w-full"
