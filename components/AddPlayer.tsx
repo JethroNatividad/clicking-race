@@ -5,9 +5,12 @@ type Props = {
   handleCloseAddPlayer: () => void;
 };
 
-const AddPlayer = ({}: Props) => {
+const AddPlayer = ({ handleOpenAddPlayer, handleCloseAddPlayer }: Props) => {
   return (
-    <div className="h-full w-full flex items-center cursor pointer justify-center border border-black rounded-md relative group cursor-pointer">
+    <div
+      onClick={handleOpenAddPlayer}
+      className="h-full w-full flex items-center cursor pointer justify-center border border-black rounded-md relative group cursor-pointer"
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
