@@ -50,17 +50,16 @@ const Racetrack = ({ player, started }: Props) => {
 
   return (
     <div ref={racetrackRef} className="border-black border-t relative">
-      <div>Player: {player.id}</div>
-      <div>Player Position: {player.position}</div>
       <div
-        className="absolute top-1/2"
+        className="absolute bottom-0"
         style={{
           left: `${(player.position / raceLength) * racetrackWidth}px`,
         }}
       >
+        <p className="text-center w-full">{player.name}</p>
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="h-10 w-10 lg:h-16 lg:w-16 xl:h-20 xl:w-20"
+          className="h-20 w-20"
           viewBox="0 0 24 24"
           fill={player.color}
         >
