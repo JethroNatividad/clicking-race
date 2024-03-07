@@ -11,7 +11,7 @@ const Menu = () => {
           className="px-5 py-3 border border-black rounded-md"
           onClick={handleStart}
         >
-          Start
+          Play Game
         </button>
       </div>
     </main>
