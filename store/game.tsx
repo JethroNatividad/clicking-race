@@ -48,7 +48,7 @@ export const GameProvider = ({ children }: React.PropsWithChildren) => {
   };
 
   const handleRestart = () => {
-    setGameState("menu");
+    setGameState("configure");
     setWinner(null);
     setPlayers((players) =>
       players.map((player) => ({ ...player, position: 0 }))
