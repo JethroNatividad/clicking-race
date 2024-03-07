@@ -2,10 +2,15 @@ import { useGame } from "@/store/game";
 import React from "react";
 
 const Finished = () => {
-  const { winner, handleRestart, setGameState, setWinner } = useGame();
+  const { winner, resetWinner, setGameState } = useGame();
   const handleBackToMenu = () => {
+    resetWinner();
     setGameState("menu");
-    setWinner(null);
+  };
+
+  const handleRestart = () => {
+    resetWinner();
+    setGameState("configure");
   };
 
   return (
