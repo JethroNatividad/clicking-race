@@ -8,7 +8,7 @@ const AddPlayerButton = ({ handleOpenAddPlayer }: Props) => {
   return (
     <div
       onClick={handleOpenAddPlayer}
-      className="h-full w-full flex items-center cursor pointer justify-center border border-black rounded-md relative group cursor-pointer overflow-hidden"
+      className="h-full w-full flex items-center cursor pointer justify-center border border-slate-600 rounded-md relative group cursor-pointer overflow-hidden"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -24,7 +24,7 @@ const AddPlayerButton = ({ handleOpenAddPlayer }: Props) => {
           d="M12 4.5v15m7.5-7.5h-15"
         />
       </svg>
-      <div className="absolute top-0 left-0 w-full h-full group-hover:opacity-100 flex justify-center items-center opacity-0 bg-zinc-100 transition-all">
+      <div className="absolute top-0 left-0 w-full h-full group-hover:opacity-100 flex justify-center items-center opacity-0 bg-slate-900 transition-all">
         <p>Add Player</p>
       </div>
     </div>
