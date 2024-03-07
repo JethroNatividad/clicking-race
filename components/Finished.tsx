@@ -2,9 +2,10 @@ import { useGame } from "@/store/game";
 import React from "react";
 
 const Finished = () => {
-  const { winner, handleRestart, setGameState } = useGame();
+  const { winner, handleRestart, setGameState, setWinner } = useGame();
   const handleBackToMenu = () => {
     setGameState("menu");
+    setWinner(null);
   };
 
   return (

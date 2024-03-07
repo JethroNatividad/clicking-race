@@ -17,7 +17,7 @@ type GameContextType = {
   gameState: GameState;
   setGameState: (state: GameState) => void;
   winner: Player | null;
-  setWinner: (player: Player) => void;
+  setWinner: (player: Player | null) => void;
   players: Player[];
   setPlayers: (players: Player[]) => void;
   handleMovePlayer: (player: Player) => void;
