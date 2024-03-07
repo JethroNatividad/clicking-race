@@ -2,13 +2,9 @@ import React from "react";
 
 type Props = {
   handleOpenAddPlayer: () => void;
-  handleCloseAddPlayer: () => void;
 };
 
-const AddPlayerButton = ({
-  handleOpenAddPlayer,
-  handleCloseAddPlayer,
-}: Props) => {
+const AddPlayerButton = ({ handleOpenAddPlayer }: Props) => {
   return (
     <div
       onClick={handleOpenAddPlayer}
