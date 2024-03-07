@@ -5,7 +5,7 @@ import AddPlayerButton from "./AddPlayerButton";
 import AddPlayer from "./AddPlayer";
 
 const Configure = () => {
-  const { players } = useGame();
+  const { players, setGameState } = useGame();
   const [isAddingPlayer, setIsAddingPlayer] = useState(false);
 
   const handleOpenAddPlayer = () => {
@@ -14,6 +14,10 @@ const Configure = () => {
 
   const handleCloseAddPlayer = () => {
     setIsAddingPlayer(false);
+  };
+
+  const handleStartGame = () => {
+    setGameState("playing");
   };
 
   return (
@@ -31,8 +35,20 @@ const Configure = () => {
         {isAddingPlayer && (
           <AddPlayer handleCloseAddPlayer={handleCloseAddPlayer} />
         )}
-        {/* Bind */}
-        {/* Start button */}
+        {players.length < 2 && !isAddingPlayer && (
+          <p className="text-red-500 text-center">
+            You need at least 2 players to start the game
+          </p>
+        )}
+
+        {players.length >= 2 && !isAddingPlayer && (
+          <button
+            className="px-5 py-3 border border-black rounded-md"
+            onClick={handleStartGame}
+          >
+            Start Game
+          </button>
+        )}
       </div>
     </main>
   );
