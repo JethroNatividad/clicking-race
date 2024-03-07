@@ -24,14 +24,13 @@ const Configure = () => {
         ))}
 
         {players.length < 6 && (
-          <AddPlayerButton
-            handleOpenAddPlayer={handleOpenAddPlayer}
-            handleCloseAddPlayer={handleCloseAddPlayer}
-          />
+          <AddPlayerButton handleOpenAddPlayer={handleOpenAddPlayer} />
         )}
       </div>
       <div className="w-full flex-1 flex items-center justify-center">
-        {isAddingPlayer && <AddPlayer />}
+        {isAddingPlayer && (
+          <AddPlayer handleCloseAddPlayer={handleCloseAddPlayer} />
+        )}
         {/* Bind */}
         {/* Start button */}
       </div>
