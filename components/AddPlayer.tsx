@@ -6,6 +6,14 @@ const AddPlayer = () => {
   const [name, setName] = useState("");
   const [color, setColor] = useState("");
 
+  const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setName(event.target.value);
+  };
+
+  const handleColorChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setColor(event.target.value);
+  };
+
   useEffect(() => {
     if (isWaitingKeypress) {
       const handleKeyPress = (event: KeyboardEvent) => {
@@ -21,11 +29,6 @@ const AddPlayer = () => {
     }
   }, [isWaitingKeypress, setKey]);
 
-  // Get key
-  // Get name
-  // Choose car color
-  // Add player
-
   const handleMapKeyClick = () => {
     setIsWaitingKeypress(true);
   };
@@ -36,6 +39,7 @@ const AddPlayer = () => {
       <label htmlFor="name" className="flex flex-col">
         Player Name:
         <input
+          onChange={handleNameChange}
           className="border-black border rounded-md outline-none p-2"
           name="name"
           type="text"
@@ -55,6 +59,7 @@ const AddPlayer = () => {
           className="border-black border rounded-md outline-none cursor-pointer ml-2"
           name="color"
           type="color"
+          onChange={handleColorChange}
         />
       </label>
 
