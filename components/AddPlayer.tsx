@@ -6,6 +6,10 @@ const AddPlayer = () => {
   const [name, setName] = useState("");
   const [color, setColor] = useState("");
 
+  const handleAddPlayer = () => {
+    console.log({ name, key, color });
+  };
+
   const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setName(event.target.value);
   };
@@ -68,7 +72,10 @@ const AddPlayer = () => {
           Cancel
         </button>
 
-        <button className="px-5 py-3 border border-black rounded-md hover:bg-zinc-100">
+        <button
+          onClick={handleAddPlayer}
+          className="px-5 py-3 border border-black rounded-md hover:bg-zinc-100"
+        >
           Add player
         </button>
       </div>
