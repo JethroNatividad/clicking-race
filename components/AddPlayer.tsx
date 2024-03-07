@@ -1,25 +1,31 @@
 import { useGame } from "@/store/game";
 import React, { useEffect, useState } from "react";
+import { v4 } from "uuid";
 
-const AddPlayer = () => {
+type Props = {
+  handleCloseAddPlayer: () => void;
+};
+
+const AddPlayer = ({ handleCloseAddPlayer }: Props) => {
   const { setPlayers, players } = useGame();
   const [isWaitingKeypress, setIsWaitingKeypress] = useState(false);
   const [key, setKey] = useState("");
   const [name, setName] = useState("");
-  const [color, setColor] = useState("");
+  const [color, setColor] = useState("#000");
 
   const handleAddPlayer = () => {
     if (!name || !key || !color) {
       return;
     }
     const player = {
-      id: Math.random().toString(36).substr(2, 9),
+      id: v4(),
       name,
       key,
       color,
       position: 0,
     };
     setPlayers([...players, player]);
+    handleCloseAddPlayer();
   };
 
   const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -62,12 +68,12 @@ const AddPlayer = () => {
         />
       </label>
 
-      <label className="flex">
+      <div className="flex">
         Keybind:
         <button onClick={handleMapKeyClick} className="w-fit ml-2 outline-none">
           {key ? key : "Click to map key"}
         </button>
-      </label>
+      </div>
 
       <label htmlFor="color" className="flex">
         Car Color:
