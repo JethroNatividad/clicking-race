@@ -39,8 +39,12 @@ const AddPlayer = ({ handleCloseAddPlayer }: Props) => {
   useEffect(() => {
     if (isWaitingKeypress) {
       const handleKeyPress = (event: KeyboardEvent) => {
-        setKey(event.key);
-        setIsWaitingKeypress(false);
+        // Check if key is already in use
+        const isKeyInUse = players.some((player) => player.key === event.key);
+        if (!isKeyInUse) {
+          setKey(event.key);
+          setIsWaitingKeypress(false);
+        }
       };
 
       window.addEventListener("keydown", handleKeyPress);
