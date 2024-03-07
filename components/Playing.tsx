@@ -1,6 +1,8 @@
 import { useGame } from "@/store/game";
 import React, { useEffect, useState } from "react";
 import Racetrack from "./Racetrack";
+import FinishLine from "@/assets/images/finish-line.png";
+import Image from "next/image";
 
 const Playing = () => {
   const { gameState, players, raceLength, setWinner, setGameState } = useGame();
@@ -41,6 +43,11 @@ const Playing = () => {
           <Racetrack key={player.id} started={countdown < 1} player={player} />
         ))}
       </div>
+      <Image
+        src={FinishLine}
+        alt="finish line"
+        className="absolute top-0 right-0 h-full object-cover z-0 border-x-2 border-black"
+      />
     </main>
   );
 };

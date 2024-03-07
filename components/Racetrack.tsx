@@ -51,10 +51,10 @@ const Racetrack = ({ player, started }: Props) => {
   return (
     <div
       ref={racetrackRef}
-      className="border-black border-t relative overflow-hidden"
+      className="border-black border-t-2 relative overflow-hidden"
     >
       <div
-        className="absolute bottom-0"
+        className="absolute bottom-0 z-10"
         style={{
           left: `${(player.position / raceLength) * racetrackWidth}px`,
         }}
