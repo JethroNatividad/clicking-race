@@ -1,23 +1,14 @@
 "use client";
 
+import Menu from "@/components/Menu";
 import Playing from "@/components/Playing";
 import { useGame } from "@/store/game";
 
 const Home = () => {
-  const { gameState, handleStart, winner, handleRestart } = useGame();
+  const { gameState, winner, handleRestart } = useGame();
 
   if (gameState === "menu") {
-    return (
-      <div>
-        <h1>Clicking Crazy</h1>
-        <button
-          className="px-5 py-3 bg-blue-400 rounded-md"
-          onClick={handleStart}
-        >
-          Start
-        </button>
-      </div>
-    );
+    return <Menu />;
   }
 
   if (gameState === "playing") {
