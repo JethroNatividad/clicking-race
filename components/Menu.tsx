@@ -1,6 +1,6 @@
 import { useGame } from "@/store/game";
 import React from "react";
-import Background from "@/assets/images/bg-menu.png";
+import Background from "@/assets/images/bg-menu.webp";
 import Image from "next/image";
 
 const Menu = () => {

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import ConfigureCar from "./ConfigureCar";
 import AddPlayerButton from "./AddPlayerButton";
 import AddPlayer from "./AddPlayer";
-import Background from "@/assets/images/bg-config.png";
+import Background from "@/assets/images/bg-config.webp";
 import Image from "next/image";
 
 const Configure = () => {

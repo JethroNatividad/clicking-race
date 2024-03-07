@@ -1,7 +1,7 @@
 import { useGame } from "@/store/game";
 import React, { useEffect, useState } from "react";
 import Racetrack from "./Racetrack";
-import FinishLine from "@/assets/images/finish-line.png";
+import FinishLine from "@/assets/images/finish-line.webp";
 import Image from "next/image";
 
 const Playing = () => {
