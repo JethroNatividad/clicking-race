@@ -1,10 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const AddPlayer = () => {
   const [isWaitingKeypress, setIsWaitingKeypress] = useState(false);
   const [key, setKey] = useState("");
   const [name, setName] = useState("");
   const [color, setColor] = useState("");
+
+  useEffect(() => {
+    if (isWaitingKeypress) {
+      const handleKeyPress = (event: KeyboardEvent) => {
+        setKey(event.key);
+        setIsWaitingKeypress(false);
+      };
+
+      window.addEventListener("keydown", handleKeyPress);
+
+      return () => {
+        window.removeEventListener("keydown", handleKeyPress);
+      };
+    }
+  }, [isWaitingKeypress, setKey]);
 
   // Get key
   // Get name
@@ -29,7 +44,7 @@ const AddPlayer = () => {
 
       <label className="flex">
         Keybind:
-        <button onClick={handleMapKeyClick} className="w-fit ml-2">
+        <button onClick={handleMapKeyClick} className="w-fit ml-2 outline-none">
           {key ? key : "Click to map key"}
         </button>
       </label>
