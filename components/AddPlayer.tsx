@@ -1,6 +1,11 @@
 import React from "react";
 
-const AddPlayer = () => {
+type Props = {
+  handleOpenAddPlayer: () => void;
+  handleCloseAddPlayer: () => void;
+};
+
+const AddPlayer = ({}: Props) => {
   return (
     <div className="h-full w-full flex items-center cursor pointer justify-center border border-black rounded-md relative group cursor-pointer">
       <svg
