@@ -49,7 +49,10 @@ const Racetrack = ({ player, started }: Props) => {
   }, []);
 
   return (
-    <div ref={racetrackRef} className="border-black border-t relative">
+    <div
+      ref={racetrackRef}
+      className="border-black border-t relative overflow-hidden"
+    >
       <div
         className="absolute bottom-0"
         style={{
