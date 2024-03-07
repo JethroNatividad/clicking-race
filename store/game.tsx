@@ -19,7 +19,6 @@ type GameContextType = {
   players: Player[];
   setPlayers: (players: Player[]) => void;
   handleMovePlayer: (player: Player) => void;
-  handleStart: () => void;
   handleRestart: () => void;
 };
 
@@ -32,7 +31,6 @@ const GameContext = createContext<GameContextType>({
   setWinner: () => {},
   setPlayers: () => {},
   handleMovePlayer: () => {},
-  handleStart: () => {},
   handleRestart: () => {},
 });
 
@@ -68,10 +66,6 @@ export const GameProvider = ({ children }: React.PropsWithChildren) => {
     setPlayers(players.map((p) => (p.id === player.id ? { ...player } : p)));
   };
 
-  const handleStart = () => {
-    setGameState("playing");
-  };
-
   const handleRestart = () => {
     setGameState("menu");
     setWinner(null);
@@ -91,7 +85,6 @@ export const GameProvider = ({ children }: React.PropsWithChildren) => {
         winner,
         setWinner,
         handleMovePlayer,
-        handleStart,
         handleRestart,
       }}
     >
