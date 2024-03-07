@@ -13,16 +13,16 @@ const Racetrack = ({ player, started }: Props) => {
   const [racetrackWidth, setRacetrackWidth] = useState(0);
   const racetrackRef = useRef(null);
 
+  const handleKeyDown = (event: KeyboardEvent) => {
+    if (event.key === player.key && !event.repeat) {
+      handleMovePlayer(player);
+    }
+  };
+
   useEffect(() => {
     if (started) {
       // If game is in play state
       // Listen for keydown events
-      const handleKeyDown = (event: KeyboardEvent) => {
-        if (event.key === player.key) {
-          handleMovePlayer(player);
-        }
-      };
-
       window.addEventListener("keydown", handleKeyDown);
 
       return () => {
