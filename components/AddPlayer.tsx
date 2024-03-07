@@ -60,7 +60,7 @@ const AddPlayer = ({ handleCloseAddPlayer }: Props) => {
   };
 
   return (
-    <div className="border border-black rounded-md w-full max-w-lg p-5 space-y-5 relative bg-white shadow-md">
+    <div className="border border-black rounded-md w-full max-w-lg p-5 space-y-5 bg-white shadow-md">
       <h1 className="text-2xl font-bold text-center">Add Player</h1>
       <label htmlFor="name" className="flex flex-col">
         Player Name:
@@ -92,21 +92,21 @@ const AddPlayer = ({ handleCloseAddPlayer }: Props) => {
       <div className="flex justify-end space-x-5">
         <button
           onClick={handleCloseAddPlayer}
-          className="px-5 py-3 border border-black rounded-md hover:bg-zinc-100"
+          className="px-5 py-3 border text-xl border-black rounded-md hover:bg-black hover:text-white transition-all"
         >
           Cancel
         </button>
 
         <button
           onClick={handleAddPlayer}
-          className="px-5 py-3 border border-black rounded-md hover:bg-zinc-100"
+          className="px-5 py-3 border text-xl border-black rounded-md hover:bg-black hover:text-white transition-all"
         >
           Add player
         </button>
       </div>
 
       {isWaitingKeypress && (
-        <div className="absolute bottom-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-40">
+        <div className="absolute bottom-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-60">
           <p className="text-white text-2xl text-center">Press any key</p>
         </div>
       )}
