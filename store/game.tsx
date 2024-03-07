@@ -2,7 +2,7 @@
 
 import React, { createContext, useState } from "react";
 
-export type GameState = "menu" | "playing" | "finished";
+export type GameState = "menu" | "configure" | "playing" | "finished";
 
 export type Player = {
   id: string;

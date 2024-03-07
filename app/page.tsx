@@ -1,5 +1,6 @@
 "use client";
 
+import Configure from "@/components/Configure";
 import Menu from "@/components/Menu";
 import Playing from "@/components/Playing";
 import { useGame } from "@/store/game";
@@ -9,6 +10,10 @@ const Home = () => {
 
   if (gameState === "menu") {
     return <Menu />;
+  }
+
+  if (gameState === "configure") {
+    return <Configure />;
   }
 
   if (gameState === "playing") {
