@@ -1,13 +1,25 @@
+import { useGame } from "@/store/game";
 import React, { useEffect, useState } from "react";
 
 const AddPlayer = () => {
+  const { setPlayers, players } = useGame();
   const [isWaitingKeypress, setIsWaitingKeypress] = useState(false);
   const [key, setKey] = useState("");
   const [name, setName] = useState("");
   const [color, setColor] = useState("");
 
   const handleAddPlayer = () => {
-    console.log({ name, key, color });
+    if (!name || !key || !color) {
+      return;
+    }
+    const player = {
+      id: Math.random().toString(36).substr(2, 9),
+      name,
+      key,
+      color,
+      position: 0,
+    };
+    setPlayers([...players, player]);
   };
 
   const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
