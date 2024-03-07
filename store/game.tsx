@@ -9,6 +9,7 @@ export type Player = {
   key: string | null;
   position: number;
   name: string;
+  color: string;
 };
 
 type GameContextType = {
