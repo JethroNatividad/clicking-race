@@ -60,13 +60,13 @@ const AddPlayer = ({ handleCloseAddPlayer }: Props) => {
   };
 
   return (
-    <div className="border border-slate-600 rounded-md w-full max-w-lg p-5 space-y-5">
+    <div className="border border-black rounded-md w-full max-w-lg p-5 space-y-5 relative">
       <h1 className="text-2xl font-bold text-center">Add Player</h1>
       <label htmlFor="name" className="flex flex-col">
         Player Name:
         <input
           onChange={handleNameChange}
-          className="border-slate-600 bg-inherit border rounded-md outline-none p-2"
+          className="border-black border rounded-md outline-none p-2"
           name="name"
           type="text"
         />
@@ -82,7 +82,7 @@ const AddPlayer = ({ handleCloseAddPlayer }: Props) => {
       <label htmlFor="color" className="flex">
         Car Color:
         <input
-          className="border-slate-600 border rounded-md outline-none cursor-pointer ml-2"
+          className="border-black border rounded-md outline-none cursor-pointer ml-2"
           name="color"
           type="color"
           onChange={handleColorChange}
@@ -92,21 +92,21 @@ const AddPlayer = ({ handleCloseAddPlayer }: Props) => {
       <div className="flex justify-end space-x-5">
         <button
           onClick={handleCloseAddPlayer}
-          className="px-5 py-3 border rounded-md border-slate-600 bg-slate-800 hover:bg-slate-700"
+          className="px-5 py-3 border border-black rounded-md hover:bg-zinc-100"
         >
           Cancel
         </button>
 
         <button
           onClick={handleAddPlayer}
-          className="px-5 py-3 border rounded-md border-slate-600 bg-slate-800 hover:bg-slate-700"
+          className="px-5 py-3 border border-black rounded-md hover:bg-zinc-100"
         >
           Add player
         </button>
       </div>
 
       {isWaitingKeypress && (
-        <div className="absolute bottom-0 left-0 w-full h-full flex justify-center items-center bg-slate-800 bg-opacity-40">
+        <div className="absolute bottom-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-40">
           <p className="text-white text-2xl text-center">Press any key</p>
         </div>
       )}

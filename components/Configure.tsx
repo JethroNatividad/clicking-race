@@ -21,7 +21,7 @@ const Configure = () => {
   };
 
   return (
-    <main className="h-screen p-10 flex flex-col text-slate-300 bg-zinc-950">
+    <main className="h-screen p-10 flex flex-col">
       <div className="grid grid-cols-6 h-24 gap-3 lg:h-32 xl:h-40 lg:gap-5 xl:gap-10">
         {players.map((player) => (
           <ConfigureCar key={player.id} player={player} />
