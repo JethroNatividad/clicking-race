@@ -12,7 +12,7 @@ const Configure = () => {
           <ConfigureCar key={player.id} player={player} />
         ))}
 
-        <AddPlayer />
+        {players.length < 6 && <AddPlayer />}
       </div>
       <div>
         {/* Bind */}
