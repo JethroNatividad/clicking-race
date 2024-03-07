@@ -5,7 +5,10 @@ type Props = {
   handleCloseAddPlayer: () => void;
 };
 
-const AddPlayer = ({ handleOpenAddPlayer, handleCloseAddPlayer }: Props) => {
+const AddPlayerButton = ({
+  handleOpenAddPlayer,
+  handleCloseAddPlayer,
+}: Props) => {
   return (
     <div
       onClick={handleOpenAddPlayer}
@@ -32,4 +35,4 @@ const AddPlayer = ({ handleOpenAddPlayer, handleCloseAddPlayer }: Props) => {
   );
 };
 
-export default AddPlayer;
+export default AddPlayerButton;
