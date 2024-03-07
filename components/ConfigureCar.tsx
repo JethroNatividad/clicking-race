@@ -1,4 +1,4 @@
-import { Player } from "@/store/game";
+import { Player, useGame } from "@/store/game";
 import React from "react";
 
 type Props = {
@@ -6,8 +6,16 @@ type Props = {
 };
 
 const ConfigureCar = ({ player }: Props) => {
+  const { setPlayers, players } = useGame();
+  const handleRemovePlayer = () => {
+    setPlayers(players.filter((p) => p.id !== player.id));
+  };
+
   return (
-    <div className="w-full h-full border border-black rounded-md flex flex-col justify-between p-3">
+    <div
+      onClick={handleRemovePlayer}
+      className="w-full h-full border border-black rounded-md flex flex-col justify-between p-3 relative group overflow-hidden cursor-pointer"
+    >
       <p className="text-2xl">{player.name}</p>
       <div className="w-full flex justify-center">
         <svg
@@ -21,6 +29,10 @@ const ConfigureCar = ({ player }: Props) => {
         </svg>
       </div>
       <p className="text-sm text-zinc-700">Keybind: {player.key}</p>
+
+      <div className="absolute top-0 left-0 w-full h-full group-hover:opacity-100 flex justify-center items-center opacity-0 bg-zinc-100 transition-all">
+        <p>Remove Player</p>
+      </div>
     </div>
   );
 };
