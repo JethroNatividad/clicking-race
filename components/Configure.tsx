@@ -2,6 +2,7 @@ import { useGame } from "@/store/game";
 import React, { useState } from "react";
 import ConfigureCar from "./ConfigureCar";
 import AddPlayerButton from "./AddPlayerButton";
+import AddPlayer from "./AddPlayer";
 
 const Configure = () => {
   const { players } = useGame();
@@ -30,7 +31,7 @@ const Configure = () => {
         )}
       </div>
       <div className="w-full flex-1 flex items-center justify-center">
-        {isAddingPlayer && <div></div>}
+        {isAddingPlayer && <AddPlayer />}
         {/* Bind */}
         {/* Start button */}
       </div>
