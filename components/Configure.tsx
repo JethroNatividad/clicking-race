@@ -47,7 +47,7 @@ const Configure = () => {
 
         {players.length >= 2 && !isAddingPlayer && (
           <button
-            className="px-5 py-3 border border-black rounded-md hover:bg-zinc-100"
+            className="px-5 py-3 border text-xl border-black rounded-md hover:bg-black hover:text-white transition-all"
             onClick={handleStartGame}
           >
             Start Game

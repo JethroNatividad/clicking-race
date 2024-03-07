@@ -37,13 +37,13 @@ const Finished = () => {
         </div>
         <h1 className="text-4xl font-bold">{winner?.name} wins</h1>
         <button
-          className="px-5 py-3 w-52 border border-black rounded-md hover:bg-zinc-100"
+          className="px-5 py-3 w-52 border text-xl border-black rounded-md hover:bg-black hover:text-white transition-all"
           onClick={handleRestart}
         >
           Play Again
         </button>
         <button
-          className="px-5 py-3 w-52 border border-black rounded-md hover:bg-zinc-100"
+          className="px-5 py-3 w-52 border text-xl border-black rounded-md hover:bg-black hover:text-white transition-all"
           onClick={handleBackToMenu}
         >
           Back to Menu

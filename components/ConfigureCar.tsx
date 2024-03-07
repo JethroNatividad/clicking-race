@@ -14,7 +14,7 @@ const ConfigureCar = ({ player }: Props) => {
   return (
     <div
       onClick={handleRemovePlayer}
-      className="w-full h-full border border-black rounded-md flex flex-col justify-between p-3 relative group overflow-hidden cursor-pointer"
+      className="w-full h-full border border-black rounded-md flex flex-col justify-between p-3 relative group overflow-hidden cursor-pointer bg-white shadow-md"
     >
       <p className="text-2xl">{player.name}</p>
       <div className="w-full flex justify-center">
