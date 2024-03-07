@@ -1,12 +1,13 @@
 "use client";
 
 import Configure from "@/components/Configure";
+import Finished from "@/components/Finished";
 import Menu from "@/components/Menu";
 import Playing from "@/components/Playing";
 import { useGame } from "@/store/game";
 
 const Home = () => {
-  const { gameState, winner, handleRestart } = useGame();
+  const { gameState } = useGame();
 
   if (gameState === "menu") {
     return <Menu />;
@@ -21,13 +22,7 @@ const Home = () => {
   }
 
   if (gameState === "finished") {
-    return (
-      <div>
-        <h1>Finished</h1>
-        <h2>{winner?.id} wins!</h2>
-        <button onClick={handleRestart}>Play again</button>
-      </div>
-    );
+    return <Finished />;
   }
 };
 
