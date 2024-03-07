@@ -86,7 +86,10 @@ const AddPlayer = ({ handleCloseAddPlayer }: Props) => {
       </label>
 
       <div className="flex justify-end space-x-5">
-        <button className="px-5 py-3 border border-black rounded-md hover:bg-zinc-100">
+        <button
+          onClick={handleCloseAddPlayer}
+          className="px-5 py-3 border border-black rounded-md hover:bg-zinc-100"
+        >
           Cancel
         </button>
 
